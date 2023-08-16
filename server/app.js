@@ -4,7 +4,6 @@ app = express(),
 fs = require('fs'),
 path = require('path');
 const fileUpload = require('express-fileupload');
-//ee
 app.use(fileUpload({
     defCharset: 'utf8',
     defParamCharset: 'utf8'
