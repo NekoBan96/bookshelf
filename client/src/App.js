@@ -2,6 +2,8 @@ import React from 'react';
 
 import SiteNav from './App/Nav/Nav'
 
+import UploadForm from './App/UploadForm/UploadForm';
+
 class App extends React.Component{
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ class App extends React.Component{
     return (
       <div className="App">
         <SiteNav/>
+        <UploadForm />
       </div>
     );
   }
