@@ -10,6 +10,7 @@ import axios from 'axios';
 
 function UploadForm(props) {
 
+
     function handleClick(e) {
         e.preventDefault();
         console.log("Запрос на добавление тайтла http://localhost:5000/uploadContent");
@@ -40,7 +41,7 @@ function UploadForm(props) {
                     <Col>
                         <Form.Group>
                         <Form.Label className="text-light">Папка с содержимым</Form.Label>
-                        <Form.Control type="file" multiple/>
+                        <Form.Control type="file" multiple onChange={handleChange}/>
                         </Form.Group>
                     </Col>
                 </Row>
