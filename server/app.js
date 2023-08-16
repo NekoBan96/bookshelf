@@ -3,6 +3,7 @@ port = '5000',
 app = express(),
 fs = require('fs'),
 path = require('path');
+const { log } = require('console');
 const fileUpload = require('express-fileupload');
 app.use(fileUpload({
     defCharset: 'utf8',
@@ -17,7 +18,8 @@ app.use('/static', express.static('./library'));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
     })
-app.post('/file', function(req, res) {
+app.post('/uploadContent', function(req, res) {
+  console.log("Запрос на выкладывание файлов");
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
   }
