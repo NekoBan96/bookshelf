@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 
 import Button from "react-bootstrap/Button"
@@ -10,19 +9,24 @@ import Container from "react-bootstrap/Container";
 
 import axios from 'axios';
 
+import { ChangeEvent, useState } from 'react';
+
 class UploadForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            titleName: "",
             file: null,
             canUpload: true,
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
+    
     handleChange(e){
         this.setState({file: e.target.files[0]}, () => {
             //Нужно упростить
+            
             if (this.state.file){
                 this.setState({canUpload: false})
             } else {
@@ -31,13 +35,15 @@ class UploadForm extends React.Component {
             
         });
     }
-    handleClick(e) {
+    handleSubmit(e) {
         e.preventDefault();
-        const formData = new FormData()
-        formData.append('file', this.state.file)
+        console.log(e.target);
+        const formData = new FormData(e.target)
+
+        // formData.append('file', this.state.file)
+        // formData.append('name', "eeee")
         console.log("Запрос на добавление тайтла http://localhost:5000/uploadContent");
         console.log(formData);
-        console.log(this.state.file);
         axios.post("http://localhost:5000/uploadContent", formData ,{
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -54,24 +60,24 @@ class UploadForm extends React.Component {
     render() {
         return(
             <Container className="my-5">
-            <Form data-bs-theme="dark" method="post" action="http://localhost:5000/uploadContent">
+            <Form data-bs-theme="dark" method="post" action="http://localhost:5000/uploadContent" onSubmit={this.handleSubmit}>
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label className="text-light">Имя тайтла</Form.Label>
-                            <Form.Control type="text" placeholder="Токийский гуль" />
+                            <Form.Label className="text-light" >Имя тайтла</Form.Label>
+                            <Form.Control type="text" placeholder="Токийский гуль" name="titleName" />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                         <Form.Label className="text-light">Папка с содержимым</Form.Label>
-                        <Form.Control type="file" accept=".rar, .zip" onChange={this.handleChange}/>
+                        <Form.Control type="file" accept=".rar, .zip" name="file" onChange={this.handleChange}/>
                         </Form.Group>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Button variant="dark" type="submit" onClick={this.handleClick} disabled={this.state.canUpload}>
+                        <Button variant="dark" type="submit" disabled={this.state.canUpload}>
                             Добавить
                         </Button>
                     </Col>
