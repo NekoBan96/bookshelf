@@ -14,12 +14,14 @@ import { ChangeEvent, useState } from 'react';
 class UploadForm extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showAlert: this.props.onError
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target);
         const formData = new FormData(e.target)
         console.log("Запрос на добавление тайтла http://localhost:5000/uploadContent");
         console.log(formData);
@@ -30,11 +32,14 @@ class UploadForm extends React.Component {
                 withCredentials: true,
                 "mode": 'no-cors',
                 'ngrok-skip-browser-warning':true
-              }
+            }
         })
             .then(res => {
                 console.log(res.data);
+            }, err => {
+                this.state.showAlert(err, "danger",);
             })
+
     }
     render() {
         return(

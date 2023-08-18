@@ -3,6 +3,8 @@ import React from 'react';
 import SiteNav from './App/Nav/Nav'
 
 import UploadForm from './App/UploadForm/UploadForm';
+import AlertMessage from './Components/Alert/AlertMessage';
+
 
 class App extends React.Component{
   constructor(props) {
@@ -16,15 +18,28 @@ class App extends React.Component{
         {
           title: 'не главная',
           url: "https://mangalib.me/toradora?section=comments&ui=125157"
+        }],
+        alert: {
+          message: "",
+          variant: "",
+          date: null,
         }
-      ]
     }
+    this.showAlert = this.showAlert.bind(this);
   }
+
+  showAlert(data, variant) {
+    console.log(data);
+    this.setState({alert: {message: data.message, variant, date: Date.now()}})
+    
+  }
+
   render() {
     return (
       <div className="App">
         <SiteNav/>
-        <UploadForm />
+        <UploadForm  onError={this.showAlert}/>
+        <AlertMessage alert={this.state.alert}/>
       </div>
     );
   }
