@@ -28,9 +28,10 @@ class App extends React.Component{
     this.showAlert = this.showAlert.bind(this);
   }
 
-  showAlert(data, variant) {
-    console.log(data);
-    this.setState({alert: {message: data.message, variant, date: Date.now()}})
+  showAlert(info, variant) {
+    console.log(info);
+    const message = info.message || info.data
+    this.setState({alert: {message, variant, date: Date.now()}})
     
   }
 

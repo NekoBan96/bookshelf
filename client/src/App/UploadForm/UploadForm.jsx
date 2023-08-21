@@ -35,7 +35,7 @@ class UploadForm extends React.Component {
             }
         })
             .then(res => {
-                console.log(res.data);
+                this.state.showAlert(res, "success",);
             }, err => {
                 this.state.showAlert(err, "danger",);
             })
