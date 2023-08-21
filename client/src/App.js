@@ -2,8 +2,9 @@ import React from 'react';
 
 import SiteNav from './App/Nav/Nav'
 
-import UploadForm from './App/UploadForm/UploadForm';
 import AlertMessage from './Components/Alert/AlertMessage';
+import Main from './App/main/Main';
+import { BrowserRouter } from 'react-router-dom';
 
 
 class App extends React.Component{
@@ -38,9 +39,11 @@ class App extends React.Component{
   render() {
     return (
       <div className="App">
-        <SiteNav/>
-        <UploadForm  onError={this.showAlert}/>
-        <AlertMessage alert={this.state.alert}/>
+        <BrowserRouter>
+          <SiteNav/>
+          <Main onError={this.showAlert}/>
+          <AlertMessage alert={this.state.alert}/>
+        </BrowserRouter>
       </div>
     );
   }

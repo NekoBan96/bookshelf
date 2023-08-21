@@ -9,9 +9,8 @@ import Container from "react-bootstrap/Container";
 
 import axios from 'axios';
 
-import { ChangeEvent, useState } from 'react';
 
-class UploadForm extends React.Component {
+export default class UploadPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,5 +70,3 @@ class UploadForm extends React.Component {
         )
     }
 }
-
-export default UploadForm
