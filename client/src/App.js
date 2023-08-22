@@ -26,10 +26,10 @@ class App extends React.Component{
           date: null,
         }
     }
-    this.showAlert = this.showAlert.bind(this);
+    this.handleShowAlert = this.handleShowAlert.bind(this);
   }
 
-  showAlert(info, variant) {
+  handleShowAlert(info, variant) {
     console.log(info);
     const message = info.message || info.data
     this.setState({alert: {message, variant, date: Date.now()}})
@@ -41,7 +41,7 @@ class App extends React.Component{
       <div className="App">
         <BrowserRouter>
           <SiteNav/>
-          <Main onError={this.showAlert}/>
+          <Main onError={this.handleShowAlert}/>
           <AlertMessage alert={this.state.alert}/>
         </BrowserRouter>
       </div>
