@@ -5,6 +5,7 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 
 import TitleCard from "../../../Components/TitleCard/TitleCard";
+import TitlesSlider from "../../../Components/TitlesSlider/TitlesSlider";
 
 import axios from "axios";
 
@@ -32,6 +33,11 @@ export default class HomePage extends React.Component {
 
         return (
             <Container className="my-5 text-secondary">
+                <Row>
+                    <Col>
+                        <TitlesSlider />
+                    </Col>
+                </Row>
                 <Row>
                     <Col>
                         <h2 className="display-1">

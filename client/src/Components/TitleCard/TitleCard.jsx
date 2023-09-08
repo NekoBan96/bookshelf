@@ -12,7 +12,22 @@ import { Link } from "react-router-dom";
 
 export default function TitleCard(props) {
 
+
+    if (props.type === "small") 
     return (
+        <Col xs="6" md="4" lg="2">
+            <Card bg="bg-primary" text="text-primary">
+                <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                    <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"}/>
+                </Card.Link>
+                <Card.Body>
+                    <Card.Title className="text-center">{props.title || "Усопшие"}</Card.Title>
+                </Card.Body>
+            </Card>
+        </Col>
+    ); else
+
+        return (
         <Card bg="bg-primary" text="text-primary">
             <Row className="align-items-center">
                     <Col className="align-items-center">
