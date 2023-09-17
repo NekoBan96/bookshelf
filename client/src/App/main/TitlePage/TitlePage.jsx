@@ -17,20 +17,7 @@ export default class TitlePage extends React.Component {
     render() {
         return(
             <Container className="my-5" >
-                <div className="titleInfo">
-                    <Row>
-                        <Col xs="3">
-                            <TitleCard type="small" />
-                        </Col>
-                        <Col>
-                            <Row>
-                                <Col>
-                                    name
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
-                </div>
+                <TitleCard type="full"/>
             </Container>
         )
     }
