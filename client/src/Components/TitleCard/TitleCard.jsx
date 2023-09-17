@@ -29,27 +29,32 @@ export default function TitleCard(props) {
         case "full":
             return (
                 <Card bg="bg-primary" text="text-primary">
-                    <Row className="">
-                            <Col className="align-items-center" xs="12" sm="auto">
+                    <Row className="align-items-center justify-content-center p-3">
+                        <Col className="align-items-center" xs="auto" >
+                            <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                                <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"} />  
+                            </Card.Link>
+                        </Col>
+                        <Col  className="">
+                            <Card.Body>
                                 <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
-                                    <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"} />  
+                                    <Card.Title className="fs-1"> {props.title || "Усопшие"}</Card.Title>
                                 </Card.Link>
-                            </Col>
-                            <Col xs="12" sm="12" md="7" className="">
-                                <Card.Body>
-                                    <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
-                                        <Card.Title className="fs-1"> {props.title || "Усопшие"}</Card.Title>
-                                    </Card.Link>
-                                    <Card.Title>{props.altTitle || "Shiki"}</Card.Title>
-                                    <Card.Title>{props.genres || "genres"}</Card.Title>
-                                    <Card.Text className="">
-                                        {props.description ||
-                                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, vitae repellendus praesentium, fuga porro provident omnis ipsum vero fugiat asperiores rem aut ab! Vitae accusantium quia nihil, sunt molestiae perspiciatis ipsum rem provident adipisci temporibus nesciunt facere molestias beatae laborum, itaque deleniti hic, nobis aliquam explicabo expedita sed id voluptas blanditiis necessitatibus. Ipsam perferendis est dignissimos ex explicabo? Corrupti itaque modi quam vel hic qui. Praesentium maiores eos reiciendis magni delectus sint quibusdam voluptates alias minus maxime modi unde libero debitis architecto sit doloremque repudiandae, beatae iusto iure aspernatur. Magni, ea numquam. Eaque ad deserunt sint sit dolores alias magnam!"
-                                        }
-                                    </Card.Text>
-                                </Card.Body>
-                            </Col>
+                                <Card.Title>{props.altTitle || "Shiki"}</Card.Title>
+                                <Card.Title>{props.genres || "genres"}</Card.Title>
+                                <Card.Title>{props.releaseDate || "releaseDate"}</Card.Title>
+                                <Card.Title>{props.status || "status"}</Card.Title>
+                                <Card.Title>{props.author || "author"}</Card.Title>
+                            </Card.Body>
+                        </Col>
                     </Row>
+                        <Card.Body>
+                            <Card.Text className="">
+                                    {props.description ||
+                                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, vitae repellendus praesentium, fuga porro provident omnis ipsum vero fugiat asperiores rem aut ab! Vitae accusantium quia nihil, sunt molestiae perspiciatis ipsum rem provident adipisci temporibus nesciunt facere molestias beatae laborum, itaque deleniti hic, nobis aliquam explicabo expedita sed id voluptas blanditiis necessitatibus. Ipsam perferendis est dignissimos ex explicabo? Corrupti itaque modi quam vel hic qui. Praesentium maiores eos reiciendis magni delectus sint quibusdam voluptates alias minus maxime modi unde libero debitis architecto sit doloremque repudiandae, beatae iusto iure aspernatur. Magni, ea numquam. Eaque ad deserunt sint sit dolores alias magnam!"
+                                    }
+                            </Card.Text>
+                        </Card.Body>
                 </Card>
             )
         break
