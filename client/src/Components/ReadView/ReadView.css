@@ -1,4 +1,10 @@
-.carousel-control-prev,
-.carousel-control-next{
+
+
+.read-view{
+    width: 1200px;
+}
+
+.read-view .carousel-control-prev,
+.read-view .carousel-control-next{
     width: 50%;
 }
