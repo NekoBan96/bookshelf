@@ -10,6 +10,8 @@ import NavLink from "react-bootstrap/esm/NavLink";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from "react-bootstrap/esm/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Link,
@@ -40,9 +42,9 @@ function SiteNav (props) {
               </Nav>
               
               <Nav className="fs-5 w-100 align-items-center justify-content-end">
-              <NavLink as={Link} to="/">Войти</NavLink>
+              <NavLink as={Link} to="/"><FontAwesomeIcon icon={faRightToBracket} /></NavLink>
                 <InputGroup className="w-auto">
-                  <Button>Найти</Button>
+                  <Button><FontAwesomeIcon icon={faMagnifyingGlass} /></Button>
                       <Form.Control 
                         type="search"
                         placeholder="Поиск"

@@ -5,6 +5,8 @@ import "./ReadView.css"
 import Carousel from 'react-bootstrap/Carousel';
 import Form from 'react-bootstrap/esm/Form'
 import Dropdown from 'react-bootstrap/Dropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
 
 
 import page from "./page.jpg"
@@ -55,7 +57,7 @@ export default class ReadView extends React.Component{
 
                 <Dropdown className="position-fixed bottom-0 end-0 m-5 d-none d-sm-block" data-bs-theme="dark" style={{zIndex: "9999"}}>
                     <Dropdown.Toggle variant="dark">
-                        Settings
+                        <FontAwesomeIcon icon={faGear} />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.ItemText>
