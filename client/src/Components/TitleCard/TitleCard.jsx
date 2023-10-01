@@ -17,7 +17,7 @@ export default function TitleCard(props) {
         case "small":
             return (
                 <Card bg="bg-primary" text="text-primary">
-                    <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                    <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
                         <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"}/>
                     </Card.Link>
                     <Card.Body>
@@ -31,7 +31,7 @@ export default function TitleCard(props) {
                 <Card bg="bg-primary" text="text-primary">
                     <Row className="align-items-center justify-content-center p-3">
                         <Col className="align-items-center" xs="auto" >
-                            <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                            <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
                                 <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"} />  
                             </Card.Link>
                         </Col>
@@ -63,7 +63,7 @@ export default function TitleCard(props) {
                 <Card bg="bg-primary" text="text-primary">
                     <Row className="align-items-center">
                             <Col className="align-items-center">
-                                <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                                <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
                                     <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"} />  
                                 </Card.Link>
                             </Col>
