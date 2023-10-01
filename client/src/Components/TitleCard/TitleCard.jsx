@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {Card, Row, Col} from "react-bootstrap/esm"
 import { Link } from "react-router-dom";
+import Placeholder from 'react-bootstrap/Placeholder';
 import { run as runHolder } from 'holderjs/holder';
 
 export default function TitleCard(props) {
@@ -11,8 +12,21 @@ export default function TitleCard(props) {
     let url = props.url || "/manga"
     let img = props.img || "holder.js/200x280?bg=1d334a&fg=138abd"
     let title = props.title || "Усопшие"
-    let altTitle = props.altTitle || "Shiki"
-    let description = props.discription || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere nobis dicta numquam sunt! Vero, distinctio iusto aspernatur expedita velit nesciunt earum maxime sint, rem mollitia consectetur non culpa alias modi sunt eveniet, consequatur tenetur saepe repellat! Ea possimus est molestias fugit blanditiis obcaecati amet commodi fugiat asperiores eos quae in consequatur nam ex ullam ipsum dolorum assumenda nobis culpa placeat, similique quibusdam quos repellat debitis. Itaque omnis facere esse reiciendis consectetur velit dolorum, sed eos repellat. Fugit obcaecati culpa enim tenetur ut doloremque dignissimos, molestiae eaque velit sed sit debitis, nihil distinctio magnam odio ducimus dolorum. Veritatis, dignissimos dolore."
+    let altTitle = props.altTitle || <Placeholder xs={1} />
+
+    let description
+    if (props.description){
+        description = <Card.Text> {props.description} </Card.Text>
+    } else {
+        description = 
+            <Placeholder as={Card.Text} animation="wave">
+                <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                <Placeholder xs={4} /> <Placeholder xs={6} />
+                <Placeholder xs={8} /> <Placeholder xs={3} />
+                <Placeholder xs={4} /> <Placeholder xs={1} />
+            </Placeholder>
+    }
+    
 
     let CardImg = <Card.Link as={Link} to={url} className="d-flex justify-content-center">
                         <Card.Img variant="top" src={img} style={{maxWidth: "20rem"}} />
@@ -43,10 +57,10 @@ export default function TitleCard(props) {
                             <Card.Body>
                                 {CardTitle}
                                 <Card.Title>{altTitle}</Card.Title>
-                                <Card.Title>{props.genres || "genres"}</Card.Title>
-                                <Card.Title>{props.releaseDate || "releaseDate"}</Card.Title>
-                                <Card.Title>{props.status || "status"}</Card.Title>
-                                <Card.Title>{props.author || "author"}</Card.Title>
+                                <Card.Title>{props.genres || <Placeholder xs={2} />}</Card.Title>
+                                <Card.Title>{props.releaseDate || <Placeholder xs={3} />}</Card.Title>
+                                <Card.Title>{props.status || <Placeholder xs={2} />}</Card.Title>
+                                <Card.Title>{props.author || <Placeholder xs={1} />}</Card.Title>
                             </Card.Body>
                         </Col>
                     </Row>
@@ -67,7 +81,7 @@ export default function TitleCard(props) {
                                 <Card.Body>
                                     {CardTitle}
                                     <Card.Title>{altTitle}</Card.Title>
-                                    <Card.Text className="d-none d-md-block">{ description.length < 700 ? description + "e" :  description.substring(0, 700) + "..."}</Card.Text>
+                                    <Card.Text className="d-none d-md-block">{ description}</Card.Text>
                                 </Card.Body>
                             </Col>
                     </Row>
