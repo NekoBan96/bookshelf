@@ -1,46 +1,44 @@
 import React from "react";
-import "./TitleCard.css"
-
-
-import Card from "react-bootstrap/esm/Card";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
-
+import {Card, Row, Col} from "react-bootstrap/esm"
 import { Link } from "react-router-dom";
-
-
 
 export default function TitleCard(props) {
 
+    let url = props.url || "/manga"
+    let img = props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"
+    let title = props.title || "Усопшие"
+    let altTitle = props.altTitle || "Shiki"
+    let description = props.discription || "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, repudiandae ea commodi exercitationem expedita aut blanditiis modi rem nostrum mollitia qui nemo culpa consequuntur eum praesentium sunt hic alias itaque?"
+
+    let CardImg = <Card.Link as={Link} to={url}>
+                        <Card.Img variant="top" src={img} style={{maxWidth: "20rem"}} />
+                    </Card.Link>
+    let CardTitle = <Card.Link as={Link} to={url}>
+                        <Card.Title className="fs-1"> {title}</Card.Title>
+                    </Card.Link>
 
     switch(props.type){
         case "small":
             return (
                 <Card bg="bg-primary" text="text-primary">
-                    <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
-                        <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"}/>
-                    </Card.Link>
+                    {CardImg}
                     <Card.Body>
-                        <Card.Title className="text-center">{props.title || "Усопшие"}</Card.Title>
+                        <Card.Title className="text-center">{title}</Card.Title>
                     </Card.Body>
                 </Card>
             )
-        break
+
         case "full":
             return (
                 <Card bg="bg-primary" text="text-primary">
                     <Row className="align-items-center justify-content-center p-3">
                         <Col className="align-items-center" xs="auto" >
-                            <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
-                                <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"} />  
-                            </Card.Link>
+                            {CardImg}
                         </Col>
-                        <Col  className="">
+                        <Col>
                             <Card.Body>
-                                <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
-                                    <Card.Title className="fs-1"> {props.title || "Усопшие"}</Card.Title>
-                                </Card.Link>
-                                <Card.Title>{props.altTitle || "Shiki"}</Card.Title>
+                                {CardTitle}
+                                <Card.Title>{altTitle}</Card.Title>
                                 <Card.Title>{props.genres || "genres"}</Card.Title>
                                 <Card.Title>{props.releaseDate || "releaseDate"}</Card.Title>
                                 <Card.Title>{props.status || "status"}</Card.Title>
@@ -49,44 +47,27 @@ export default function TitleCard(props) {
                         </Col>
                     </Row>
                         <Card.Body>
-                            <Card.Text className="">
-                                    {props.description ||
-                                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, vitae repellendus praesentium, fuga porro provident omnis ipsum vero fugiat asperiores rem aut ab! Vitae accusantium quia nihil, sunt molestiae perspiciatis ipsum rem provident adipisci temporibus nesciunt facere molestias beatae laborum, itaque deleniti hic, nobis aliquam explicabo expedita sed id voluptas blanditiis necessitatibus. Ipsam perferendis est dignissimos ex explicabo? Corrupti itaque modi quam vel hic qui. Praesentium maiores eos reiciendis magni delectus sint quibusdam voluptates alias minus maxime modi unde libero debitis architecto sit doloremque repudiandae, beatae iusto iure aspernatur. Magni, ea numquam. Eaque ad deserunt sint sit dolores alias magnam!"
-                                    }
-                            </Card.Text>
+                            <Card.Text>{description}</Card.Text>
                         </Card.Body>
                 </Card>
             )
-        break
+
         default:
             return (
                 <Card bg="bg-primary" text="text-primary">
                     <Row className="align-items-center">
                             <Col className="align-items-center">
-                                <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
-                                    <Card.Img variant="top" src={props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"} />  
-                                </Card.Link>
+                                {CardImg}
                             </Col>
-                            <Col xs="8" xl="10" className="">
+                            <Col xs="8" xl="10">
                                 <Card.Body>
-                                    <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
-                                        <Card.Title className="fs-1"> {props.title || "Усопшие"}</Card.Title>
-                                    </Card.Link>
-                                    <Card.Title>{props.altTitle || "Shiki"}</Card.Title>
-                                    <Card.Text className="d-none d-md-block">
-                                        {props.description ||
-                                        "В горах Японии и по сей день сохранились глухие поселения, не знакомые с благами современной цивилизации, при этом молодежь не мечтает продолжить традиционные семейные ремесла. Большинство выпускников местных школ предпочитают перебраться в Токио, Саппоро,..."
-                                        }
-                                    </Card.Text>
+                                    {CardTitle}
+                                    <Card.Title>{altTitle}</Card.Title>
+                                    <Card.Text className="d-none d-md-block">{description}</Card.Text>
                                 </Card.Body>
                             </Col>
                     </Row>
                 </Card>
             )
-        break
-    }
-    
-
-
-        
+    }        
 }
