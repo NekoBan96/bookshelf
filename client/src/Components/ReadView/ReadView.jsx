@@ -15,7 +15,8 @@ export default class ReadView extends React.Component{
 
         this.state = {
             style: {
-                width: "50%"
+                width: "50%",
+                zIndex: "1"
             },
             sliderIndex: 1
         }
@@ -36,8 +37,8 @@ export default class ReadView extends React.Component{
 
             <div className="read-ui">
                 
-                <div className="position-fixed bottom-0 m-5">
-                    <Form.Select className="" data-bs-theme="dark" style={{width: "5rem", zIndex: "9999"}}>
+                <div className="position-fixed bottom-0 m-5" style={{width: "5rem", zIndex: "9999"}}>
+                    <Form.Select className="" data-bs-theme="dark" >
                         <option value="">1/4</option>
                         <option value="">2/4</option>
                         <option value="">3/4</option>

@@ -37,7 +37,7 @@ export default function TitleCard(props) {
                         </Col>
                         <Col  className="">
                             <Card.Body>
-                                <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                                <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
                                     <Card.Title className="fs-1"> {props.title || "Усопшие"}</Card.Title>
                                 </Card.Link>
                                 <Card.Title>{props.altTitle || "Shiki"}</Card.Title>
@@ -69,7 +69,7 @@ export default function TitleCard(props) {
                             </Col>
                             <Col xs="8" xl="10" className="">
                                 <Card.Body>
-                                    <Card.Link as={Link} to={props.link || "http://localhost:3000/"}>
+                                    <Card.Link as={Link} to={props.link || "http://localhost:3000/manga"}>
                                         <Card.Title className="fs-1"> {props.title || "Усопшие"}</Card.Title>
                                     </Card.Link>
                                     <Card.Title>{props.altTitle || "Shiki"}</Card.Title>
