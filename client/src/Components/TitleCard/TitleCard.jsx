@@ -8,7 +8,7 @@ export default function TitleCard(props) {
     let img = props.img || "https://animego.org/media/cache/thumbs_250x350/upload/anime/images/64e1d7f767e31205809598.jpg"
     let title = props.title || "Усопшие"
     let altTitle = props.altTitle || "Shiki"
-    let description = props.discription || "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, repudiandae ea commodi exercitationem expedita aut blanditiis modi rem nostrum mollitia qui nemo culpa consequuntur eum praesentium sunt hic alias itaque?"
+    let description = props.discription || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam facere nobis dicta numquam sunt! Vero, distinctio iusto aspernatur expedita velit nesciunt earum maxime sint, rem mollitia consectetur non culpa alias modi sunt eveniet, consequatur tenetur saepe repellat! Ea possimus est molestias fugit blanditiis obcaecati amet commodi fugiat asperiores eos quae in consequatur nam ex ullam ipsum dolorum assumenda nobis culpa placeat, similique quibusdam quos repellat debitis. Itaque omnis facere esse reiciendis consectetur velit dolorum, sed eos repellat. Fugit obcaecati culpa enim tenetur ut doloremque dignissimos, molestiae eaque velit sed sit debitis, nihil distinctio magnam odio ducimus dolorum. Veritatis, dignissimos dolore."
 
     let CardImg = <Card.Link as={Link} to={url}>
                         <Card.Img variant="top" src={img} style={{maxWidth: "20rem"}} />
@@ -63,7 +63,7 @@ export default function TitleCard(props) {
                                 <Card.Body>
                                     {CardTitle}
                                     <Card.Title>{altTitle}</Card.Title>
-                                    <Card.Text className="d-none d-md-block">{description}</Card.Text>
+                                    <Card.Text className="d-none d-md-block">{ description.length < 700 ? description + "e" :  description.substring(0, 700) + "..."}</Card.Text>
                                 </Card.Body>
                             </Col>
                     </Row>
