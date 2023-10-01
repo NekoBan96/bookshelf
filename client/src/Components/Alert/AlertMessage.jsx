@@ -1,6 +1,6 @@
 import React from "react";
 import Alert from "react-bootstrap/Alert";
-import "./AlertMessage.css";
+
 
 
 
@@ -32,13 +32,11 @@ export default class AlertMessage extends React.Component {
     }
 
     render() {
-        if (this.state.show) {
-            return (
-                <Alert variant={this.state.alert.variant}  onClose={this.handleClose} dismissible>
-                    {this.state.alert.message}
-                </Alert>
-            )
-        }
+        return (
+            <Alert variant={this.state.alert.variant} show={this.state.show} onClose={this.handleClose} dismissible className="mb-0 position-fixed bottom-0 start-50 translate-middle-x">
+                {this.state.alert.message}
+            </Alert>
+        )
     }
     
 
