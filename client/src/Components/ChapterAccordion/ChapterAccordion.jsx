@@ -3,8 +3,6 @@ import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import { Link } from "react-router-dom";
 
-
-
 export default class ChapterAccordion extends React.Component{
     constructor(props){
         super(props)
@@ -51,15 +49,9 @@ export default class ChapterAccordion extends React.Component{
         })
     }
 
-
-
     render() {
-
-
-        
-
         return(
-            <Accordion>
+            <Accordion alwaysOpen>
                 {this.createItems()}
             </Accordion>
         )
