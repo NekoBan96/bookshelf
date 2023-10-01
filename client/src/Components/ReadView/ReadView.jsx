@@ -24,8 +24,13 @@ export default class ReadView extends React.Component{
         this.handleSelect = this.handleSelect.bind(this)
     }
 
+    componentDidMount(){
+        if (window.screen.width <= 575 ){
+            this.setState({style: {width: "100%"}})
+        }
+    }
+
     handleRangeChange(e){
-        console.log(e.target.value);
         this.setState({style: {width: e.target.value + "%"}})
     }
     handleSelect(selectedIndex){
@@ -48,7 +53,7 @@ export default class ReadView extends React.Component{
                 
 
 
-                <Dropdown className="position-fixed bottom-0 end-0 m-5 d-none d-md-block" data-bs-theme="dark" style={{zIndex: "9999"}}>
+                <Dropdown className="position-fixed bottom-0 end-0 m-5 d-none d-sm-block" data-bs-theme="dark" style={{zIndex: "9999"}}>
                     <Dropdown.Toggle variant="dark">
                         Settings
                     </Dropdown.Toggle>
