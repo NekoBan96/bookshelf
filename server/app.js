@@ -7,6 +7,10 @@ path = require('path'),
 fileUpload = require('express-fileupload'),
 zl = require("zip-lib"),
 cors = require('cors')
+const db = require('./db');
+
+
+const mangas = require('./controllers/mangas.js');
 
 
 app.use(cors())
@@ -58,7 +62,7 @@ app.post('/uploadContent', function(req, res) {
           .then(()=> {
             fs.rm(pathFile, () => { 
               log('unzip done')
-              res.send("File uploaded successfully")
+              mangas.create(req, res)
             })
           }, err=> {
             throw new Error(err)
