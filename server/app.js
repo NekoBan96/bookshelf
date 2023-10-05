@@ -8,72 +8,51 @@ fileUpload = require('express-fileupload'),
 zl = require("zip-lib"),
 cors = require('cors')
 const db = require('./db');
-
-
 const mangas = require('./controllers/mangas.js');
-
-
 app.use(cors())
-app.use(fileUpload({
-  defCharset: 'utf8',
-  defParamCharset: 'utf8'
-  }));
+app.use(fileUpload({defCharset: 'utf8', defParamCharset: 'utf8'}));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true })) 
+app.use('/static', express.static('./library'));
+  
 //Возможно понадобиться для загрузки больших файлов
 // app.use(fileUpload({
 //     useTempFiles: true,
 //     tempFileDir: "/tmp/"
 // }));
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-app.use('/static', express.static('./library'));
-
-
-
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html')
-    })
-
-
 
 app.post('/uploadContent', function(req, res) {
   log("Запрос на выкладывание файлов");
 
-  if (!req.files || Object.keys(req.files).length === 0)
+  if (!req.files || Object.keys(req.files).length === 0) //проверкаа наличия файлов
     return res.status(400).send('No files were uploaded.');
-
 
   let sampleFile = req.files.file;
   const titleName = req.body.titleName
   const pathRep = path.join(__dirname, 'library', titleName)
   const pathFile = path.join(pathRep, sampleFile.name)
   
-
   log('try to add ' + titleName, sampleFile);
 
   fs.mkdir(pathRep, () => {
-    sampleFile.mv(pathFile, function(err) {
+    sampleFile.mv(pathFile, function(err) { //перемещение файла из буфера в директорию
       if (err)
         return res.status(500).send(err);
 
       try{
-        zl.extract(pathFile, pathRep, 'utf8')
+        zl.extract(pathFile, pathRep, 'utf8') //распаковка архивированного файла
           .then(()=> {
             fs.rm(pathFile, () => { 
               log('unzip done')
-              mangas.create(req, res)
+              mangas.create(req, res) //использование базы данных
             })
           }, err=> {
             throw new Error(err)
           })
     } catch(err) {
       log(err)
-    }
-  });
-  })
-  
-});
+    }});})});
 
 
 app.listen(port, function () {
