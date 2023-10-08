@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const MONGO_USERNAME = 'shvepsss';
-const MONGO_PASSWORD = '123123123';
+const MONGO_USERNAME = 'mongo-admin';
+const MONGO_PASSWORD = 'passw0rd';
 const MONGO_HOSTNAME = '127.0.0.1';
 const MONGO_PORT = '27017';
 const MONGO_DB = 'MangaBook';

@@ -23,14 +23,12 @@ export default class UploadPage extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target)
-        console.log("Запрос на добавление тайтла http://localhost:5000/uploadContent");
+        console.log("Запрос на добавление тайтла /uploadContent");
         console.log(formData);
-        axios.post("http://localhost:5000/uploadContent", formData ,{
+        axios.post("/api/uploadContent", formData ,{
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Access-Control-Allow-Origin': '*',
-                withCredentials: true,
-                "mode": 'no-cors',
+
                 'ngrok-skip-browser-warning':true
             }
         })
@@ -44,7 +42,7 @@ export default class UploadPage extends React.Component {
     render() {
         return(
             <Container className="my-5">
-            <Form data-bs-theme="dark" method="post" action="http://localhost:5000/uploadContent" onSubmit={this.handleSubmit}>
+            <Form data-bs-theme="dark" method="post" onSubmit={this.handleSubmit}>
                 <Row>
                     <Form.Group as={Col} lg="4" className="mb-3">
                         <Form.Label className="text-light" >Название тайтла</Form.Label>

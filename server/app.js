@@ -32,7 +32,7 @@ app.post('/uploadContent', function(req, res) {
   const titleName = req.body.titleName
   const pathRep = path.join(__dirname, 'library', titleName)
   const pathFile = path.join(pathRep, sampleFile.name)
-  
+
   log('try to add ' + titleName, sampleFile);
 
   fs.mkdir(pathRep, () => {
@@ -47,12 +47,16 @@ app.post('/uploadContent', function(req, res) {
               log('unzip done')
               mangas.create(req, res) //использование базы данных
             })
-          }, err=> {
-            throw new Error(err)
-          })
-    } catch(err) {
-      log(err)
-    }});})});
+            }, err=> {
+              throw new Error(err)
+            }
+          )
+      }catch(err) {
+        log(err)
+      }
+    })
+  })
+});
 
 
 app.listen(port, function () {
