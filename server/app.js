@@ -7,13 +7,17 @@ path = require('path'),
 fileUpload = require('express-fileupload'),
 zl = require("zip-lib"),
 cors = require('cors')
-const db = require('./db');
+const db = require('./db.js');
 const mangas = require('./controllers/mangas.js');
 app.use(cors())
 app.use(fileUpload({defCharset: 'utf8', defParamCharset: 'utf8'}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
 app.use('/static', express.static('./library'));
+const MongoClient = require("mongodb").MongoClient;
+   
+const url = "mongodb://127.0.0.1:27017/";
+const mongoClient = new MongoClient(url);
   
 //Возможно понадобиться для загрузки больших файлов
 // app.use(fileUpload({
