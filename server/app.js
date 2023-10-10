@@ -8,16 +8,13 @@ fileUpload = require('express-fileupload'),
 zl = require("zip-lib"),
 cors = require('cors')
 const db = require('./db.js');
-const mangas = require('./controllers/mangas.js');
+//const mangas = require('./controllers/mangas.js');
 app.use(cors())
 app.use(fileUpload({defCharset: 'utf8', defParamCharset: 'utf8'}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
 app.use('/static', express.static('./library'));
-const MongoClient = require("mongodb").MongoClient;
-   
-const url = "mongodb://127.0.0.1:27017/";
-const mongoClient = new MongoClient(url);
+
   
 //Возможно понадобиться для загрузки больших файлов
 // app.use(fileUpload({
@@ -49,10 +46,10 @@ app.post('/uploadContent', function(req, res) {
           .then(()=> {
             fs.rm(pathFile, () => { 
               log('unzip done')
-              mangas.create(req, res) //использование базы данных
+                db.run(req.body).then(result => {res.status(200).send('zaebok')}).catch(err => {throw new Error(err)})
             })
             }, err=> {
-              throw new Error(err)
+              throw new Error('ghugh')
             }
           )
       }catch(err) {
