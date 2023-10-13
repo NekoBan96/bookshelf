@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container";
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import axios from 'axios';
+    import axios from 'axios';
 
 
 export default class UploadPage extends React.Component {

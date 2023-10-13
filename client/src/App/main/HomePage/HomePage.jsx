@@ -13,23 +13,36 @@ export default class HomePage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            recently: null
 
         }
+        this.createRecently = this.createRecently.bind(this)
+    }
+
+    createRecently() {
+        if (!this.state.recently)
+            return (<TitleCard />)
+        return (
+            this.state.recently.map(title => {
+                return <TitleCard key={title._id} title={title.titleName} altTitle={title.titleAltName} img={`/api/static/${title.titleName}/logo.jpg`} description={title.description} />
+            })
+        )
+    }
+
+    componentDidMount() {
+        axios.get("/api/db/recentAdded/")
+            .then(res => {
+                this.setState({recently: res.data});
+                console.log(res)
+            }, err => {
+                console.log(err);
+            })
+
     }
 
     render() {
 
-        axios.get("http://localhost:5000/", {
-            headers: {
-                'ngrok-skip-browser-warning':true
-            }
-        })
-            .then(res => {
-
-            }, err => {
-
-            })
-
+       
 
         return (
             <Container className="my-5 text-secondary">
@@ -47,7 +60,7 @@ export default class HomePage extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <TitleCard title="" altTitle="" img="" description="" />
+                        {this.createRecently()}
                     </Col>
                 </Row>
             </Container>

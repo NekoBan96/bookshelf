@@ -12,21 +12,17 @@ export default class ChapterAccordion extends React.Component{
                 [
                     {
                         name: "Глава 1 Начало",
-                        url: "read"
                     },
                     {
                         name: "Глава 2 Поворот",
-                        url: "read"
                     },
                 ],
                 [
                     {
                         name: "Глава 3 Пиздец",
-                        url: "read"
                     },
                     {
                         name: "Глава 4 Конец",
-                        url: "read"
                     },
                 ]
             ]        
@@ -35,13 +31,15 @@ export default class ChapterAccordion extends React.Component{
 
     createItems() {
         let i = 0
+        let k = 0
         return this.state.volumes.map(volume => {
             i++
-            return <Accordion.Item key={volume} eventKey={i}>
+            return <Accordion.Item key={i} eventKey={i}>
                 <Accordion.Header>Том {i}</Accordion.Header>
                 <Accordion.Body>
                     {volume.map(chapter => {
-                        return <p><Link to={chapter.url} className="text-light">{chapter.name}</Link></p>
+                        k++
+                        return <p key={k}><Link to={`name/${i}/${k}/1`} className="text-light">{chapter.name}</Link></p>
                     })}
                 </Accordion.Body>
                 

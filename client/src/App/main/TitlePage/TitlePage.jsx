@@ -10,11 +10,7 @@ import Container from "react-bootstrap/esm/Container";
 
 
 export default class TitlePage extends React.Component {
-    constructor(props){
-        super(props)
 
-
-    }
     render() {
         return(
             <Container className="my-4" >
