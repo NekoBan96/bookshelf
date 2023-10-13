@@ -59,6 +59,19 @@ app.post('/uploadContent', function(req, res) {
   })
 });
 
+// app.get('/manga/read/:titleName/:chapterId/:pageId', function(req, res) {
+//   titleName = req.params["titleName"];
+//   chapterId = req.params['chapterId'];
+//   pageId = req.params["pageId"];
+//   pathRep = path.join(__dirname, 'library', titleName, chapterId);
+//   pathFile = path.extname(path.join(pathRep, pageId)) 
+//   res.sendFile(pathFile);
+
+// })
+
+app.get('db/recentAdded/')
+
+app.get('db/get/recentlyAdded')
 
 app.listen(port, function () {
     console.log(`server listen: http://${port}`);
