@@ -46,7 +46,7 @@ app.post('/uploadContent', function(req, res) {
           .then(()=> {
             fs.rm(pathFile, () => { 
               log('unzip done')
-                db.run(req.body).then(result => {res.status(200).send('zaebok')}).catch(err => {throw new Error(err)})
+                db.add(req.body).then(result => {res.status(200).send('zaebok')}).catch(err => {throw new Error(err)})
             })
             }, err=> {
               throw new Error('ghugh')
@@ -69,9 +69,13 @@ app.post('/uploadContent', function(req, res) {
 
 // })
 
-app.get('db/recentAdded/')
+app.get('/db/recentAdded/', function (req, res) {
+  start = Number(req.query.s);
+  end = Number(req.query.e);
+  countTitles = end - start;
+  db.recent(countTitles, start).then (result => {res.send(result)}, err => {throw new Error(err)})
+})
 
-app.get('db/get/recentlyAdded')
 
 app.listen(port, function () {
     console.log(`server listen: http://${port}`);
