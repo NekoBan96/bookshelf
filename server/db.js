@@ -30,3 +30,14 @@ exports.add = async function(body) {
         return Promise.resolve(result);
     } catch(err) {throw (err)}
   }
+
+exports.searchByName = async function (searchObj) {
+    try {
+        await mongoClient.connect();
+        const db = mongoClient.db("MangaBook");
+        const collection = db.collection("mangas");
+        result = await collection.find({titleName: search}).toArray()
+        console.log(result);
+        return Promise.resolve(result);
+    } catch(err) {throw (err)}
+}
