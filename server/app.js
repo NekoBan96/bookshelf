@@ -76,9 +76,13 @@ app.get('/db/recentAdded/', function (req, res) {
   db.recent(countTitles, start).then (result => {res.send(result)}, err => {throw new Error(err)})
 })
 
-app.get('db/search/', function (req, res) {
+app.get('/db/search/', function (req, res) {
   search = req.query.s
   db.searchByName(search).then (result => {res.send(result)}, err => {throw new Error(err)})
+})
+
+app.get('/db/searchGenre', function (req, res) {
+  res.send('иди нахуй')
 })
 
 app.listen(port, function () {
