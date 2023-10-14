@@ -31,13 +31,14 @@ exports.add = async function(body) {
     } catch(err) {throw (err)}
   }
 
-exports.searchByName = async function (searchObj) {
+exports.searchByName = async function (searchObj, limit) {
     try {
         await mongoClient.connect();
         const db = mongoClient.db("MangaBook");
         const collection = db.collection("mangas");
-        result = await collection.find({titleName: search}).toArray()
-        console.log(result);
-        return Promise.resolve(result);
+        result1 = await collection.find({titleName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
+        result2 = await collection.find({titleAltName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
+        console.log(result1, result2);
+        return Promise.resolve({result1, result2});
     } catch(err) {throw (err)}
 }

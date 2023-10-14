@@ -76,9 +76,10 @@ app.get('/db/recentAdded/', function (req, res) {
   db.recent(countTitles, start).then (result => {res.send(result)}, err => {throw new Error(err)})
 })
 
-app.get('/db/search/', function (req, res) {
-  search = req.query.s
-  db.searchByName(search).then (result => {res.send(result)}, err => {throw new Error(err)})
+app.get('/db/search/:search/:limit/', function (req, res) {
+  limit = Number(req.params["limit"] || 0);
+  search = req.params["search"];
+  db.searchByName(search, limit).then (result => {res.send({result1, result2})}, err => {throw new Error(err)})
 })
 
 app.get('/db/searchGenre', function (req, res) {
