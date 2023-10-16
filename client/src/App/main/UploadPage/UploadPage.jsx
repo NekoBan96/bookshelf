@@ -15,14 +15,19 @@ export default class UploadPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showAlert: this.props.onError
+            showAlert: this.props.onError,
+            genres: ["Сёзде", "Комедия", "Исекай"],
+            selectedGenres: []
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.createCheckboxes = this.createCheckboxes.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target)
+        formData.append("genres", this.state.selectedGenres)
         console.log("Запрос на добавление тайтла /uploadContent");
         console.log(formData);
         axios.post("/api/uploadContent", formData ,{
@@ -38,6 +43,34 @@ export default class UploadPage extends React.Component {
                 this.state.showAlert(err, "danger",);
             })
 
+    }
+    handleChange(e) {
+        let newSelected = this.state.selectedGenres
+        if (e.target.checked){
+            newSelected.push(e.target.value);
+            this.setState({selectedGenres: newSelected})
+        } else {
+            newSelected = newSelected.filter((element) => element !== e.target.value);
+            this.setState({selectedGenres: newSelected})
+        }
+
+    }
+
+    createCheckboxes() {
+        let i = -1
+        return this.state.genres.map(genre => {
+            i++
+            return (
+                <Dropdown.ItemText key={genre}>
+                    <Form.Check
+                        type="checkbox"
+                        label={genre}
+                        value={genre}
+                        onChange={this.handleChange.bind(this)}
+                        />
+                </Dropdown.ItemText>
+            )
+        })
     }
     render() {
         return(
@@ -71,24 +104,7 @@ export default class UploadPage extends React.Component {
                                 Выберете жанр
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.ItemText>
-                                    <Form.Check
-                                        type="checkbox"
-                                        label="Драма"
-                                    />
-                                </Dropdown.ItemText>
-                                <Dropdown.ItemText>
-                                    <Form.Check
-                                        type="checkbox"
-                                        label="Комедия"
-                                    />
-                                </Dropdown.ItemText>
-                                <Dropdown.ItemText>
-                                    <Form.Check
-                                        type="checkbox"
-                                        label="Сёдзе"
-                                    />
-                                </Dropdown.ItemText>
+                                {this.createCheckboxes()}
                             </Dropdown.Menu>
                         </Dropdown>
                     </Form.Group>
