@@ -7,14 +7,12 @@ import ReadPage from "./ReadPage/ReadPage";
 
 import {
     Route,
-    Routes
+    Routes,
   } from 'react-router-dom';
 
-import {useParams} from "react-router-dom";
 
 export default function Main(props) {
 
-    const params = useParams()
 
     return (
     <Routes>
@@ -22,13 +20,10 @@ export default function Main(props) {
         <Route exact path="uploadTitle" element={<UploadPage onError={props.onError} />} />
         <Route exact path="manga">
             <Route exact path="" element={<TitlePage onError={props.onError} />} />
-            <Route exact path="read" element={<ReadPage onError={props.onError} />} />
-            <Route exact path=":name">
-                <Route exact path="" element={<TitlePage onError={props.onError} name={params.name} />} />
-                <Route exact path=":volume" element={<ReadPage onError={props.onError} />} />
-                <Route exact path=":volume/:chapter" element={<ReadPage onError={props.onError} />} />
-                <Route exact path=":volume/:chapter/:page" element={<ReadPage onError={props.onError} />} />
-            </Route>
+            <Route exact path=":name" element={<TitlePage onError={props.onError}/>} />
+            <Route exact path=":name/:volume" element={<ReadPage onError={props.onError} />} />
+            <Route exact path=":name/:volume/:chapter" element={<ReadPage onError={props.onError} />} />
+            <Route exact path=":name/:volume/:chapter/:page" element={<ReadPage onError={props.onError} />} />
         </Route>
         <Route path="*" element={<>404</>} />
     </Routes>
