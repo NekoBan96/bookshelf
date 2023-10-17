@@ -16,7 +16,10 @@ export default class UploadPage extends React.Component {
         super(props);
         this.state = {
             showAlert: this.props.onError,
-            genres: ["Сёзде", "Комедия", "Исекай"],
+            genres: ["Сёзде", "Комедия", "Исекай", "Безумие", "Боевые искусства", "Вампиры", "Военное", "Гарем", "Демоны", "Детектив", "Детское", "Дзёсэй", "Драма", "Игры",
+            "Исторический", "Космос", "Романтика", "Фэнтези", "Приключения", "Повседневность", "Арт", "Гендерная интрига", "История", "Киберпанк", "Кодомо", "Магия", "Махо-сёдзе", 
+            "Машины", "Меха", "Мистика", "Музыка", "Научная фантастика", "Омегаверс", "Пародия", "Полиция", "Постапокалиптика", "Психология", "Самураи", "Сверхестественное",
+            "Сёздзе-ай", "Сёнэн", "Сёнэн-ай", "Спорт", "Супер сила", "Сэйнен", "Трагедия", "Триллер", "Ужасы", "Школа", "Эротика", "Этти", "Юри", "Яой"].sort(),
             selectedGenres: []
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -103,7 +106,7 @@ export default class UploadPage extends React.Component {
                             <Dropdown.Toggle variant="dark">
                                 Выберете жанр
                             </Dropdown.Toggle>
-                            <Dropdown.Menu>
+                            <Dropdown.Menu style={{height: "20rem", overflowY: "scroll"}}>
                                 {this.createCheckboxes()}
                             </Dropdown.Menu>
                         </Dropdown>

@@ -22,8 +22,7 @@ export default function Main(props) {
             <Route exact path="" element={<TitlePage onError={props.onError} />} />
             <Route exact path=":name" element={<TitlePage onError={props.onError}/>} />
             <Route exact path=":name/:volume" element={<ReadPage onError={props.onError} />} />
-            <Route exact path=":name/:volume/:chapter" element={<ReadPage onError={props.onError} />} />
-            <Route exact path=":name/:volume/:chapter/:page" element={<ReadPage onError={props.onError} />} />
+            <Route exact path=":name/:chapter/:page" element={<ReadPage onError={props.onError} />} />
         </Route>
         <Route path="*" element={<>404</>} />
     </Routes>
