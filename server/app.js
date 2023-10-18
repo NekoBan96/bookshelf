@@ -14,8 +14,8 @@ app.use(fileUpload({defCharset: 'utf8', defParamCharset: 'utf8'}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
 app.use('/static', express.static('./library'));
-
-  
+const fsp = require('node:fs/promises')
+const AdmZip = require('adm-zip'); 
 //Возможно понадобиться для загрузки больших файлов
 // app.use(fileUpload({
 //     useTempFiles: true,
@@ -40,13 +40,38 @@ app.post('/uploadContent', function(req, res) {
     sampleFile.mv(pathFile, function(err) { //перемещение файла из буфера в директорию
       if (err)
         return res.status(500).send(err);
+      // try{
+      //   const zip = new AdmZip(pathFile)
+      //   zip.extractAllTo(pathRep, true, )
+      //   log(fs.readdirSync(pathRep))
+      //   const decoder = new TextDecoder('utf-8');
+      //   let bubub = fs.readdirSync(pathRep)
+      //   const encoder = new TextEncoder();
+      //   const bytes = encoder.encode(bubub[5]);
+      //   console.log(decoder.decode(bytes));
+      //   const someEncodedString = Buffer.from(bubub[5], "utf-8").toString();
+      //   log(someEncodedString)
 
+      // }catch(err){
+      //   log(err)
+      // }
       try{
         zl.extract(pathFile, pathRep, 'utf8') //распаковка архивированного файла
           .then(()=> {
             fs.rm(pathFile, () => { 
               log('unzip done')
                 db.add(req.body).then(result => {res.status(200).send('zaebok')}).catch(err => {throw new Error(err)})
+                const namesRep = fs.readdirSync(pathRep)
+                for (const rep of namesRep){
+                  if (rep == 'logo.jpg'){continue}
+                  let i = 1;
+                  const namesPages  = fs.readdirSync(path.join(pathRep, rep))
+                  for (const page of namesPages){
+                    fs.rename(path.join(pathRep, rep, page), path.join(pathRep, rep, `${i}.png`), err => {if (err) throw err})
+                    i++
+                  }
+                }
+                
             })
             }, err=> {
               throw new Error('ghugh')
