@@ -8,48 +8,34 @@ export default class ChapterAccordion extends React.Component{
         super(props)
 
         this.state = {
-            volumes: [
-                [
-                    {
-                        name: "Глава 1 Начало",
-                    },
-                    {
-                        name: "Глава 2 Поворот",
-                    },
-                ],
-                [
-                    {
-                        name: "Глава 3 Пиздец",
-                    },
-                    {
-                        name: "Глава 4 Конец",
-                    },
-                ]
+            chapters: [
+                {
+                    name: "Глава 1"
+                },
+                {
+                    name: "Глава 2"
+                }
+                
             ]        
         }
     }
 
     createItems() {
         let i = 0
-        let k = 0
-        return this.state.volumes.map(volume => {
-            i++
-            return <Accordion.Item key={i} eventKey={i}>
-                <Accordion.Header>Том {i}</Accordion.Header>
-                <Accordion.Body>
-                    {volume.map(chapter => {
-                        k++
-                        return <p key={k}><Link to={`name/${i}/${k}/1`} className="text-light">{chapter.name}</Link></p>
+        return <Accordion.Item>
+            <Accordion.Header>Главы</Accordion.Header>
+            <Accordion.Body>
+                {this.state.chapters.map(chapter => {
+                        i++
+                        return <p key={i}><Link to={`${i}/1`} className="text-light">{chapter.name}</Link></p>
                     })}
-                </Accordion.Body>
-                
-            </Accordion.Item>
-        })
+            </Accordion.Body>
+        </Accordion.Item>
     }
 
     render() {
         return(
-            <Accordion alwaysOpen>
+            <Accordion>
                 {this.createItems()}
             </Accordion>
         )
