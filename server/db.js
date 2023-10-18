@@ -5,12 +5,11 @@ const mongoClient = new MongoClient(url);
 
 exports.add = async function(body) {
     try {
-        debugger
         date = Date.now()
         await mongoClient.connect();
         const db = mongoClient.db("MangaBook");
         const collection = db.collection("mangas");
-        const data = {titleName: body.titleName, titleAltName: body.titleAltName, description: body.description, date};
+        const data = {titleName: body.titleName, titleAltName: body.titleAltName, description: body.description, genres: body.genres};
         const result = await collection.insertOne(data);
         console.log(result);
         console.log(data);
