@@ -1,3 +1,5 @@
+const { ObjectId } = require("mongodb");
+
 const MongoClient = require("mongodb").MongoClient;
    
 const url = "mongodb://127.0.0.1:27017/";
@@ -11,8 +13,6 @@ exports.add = async function(body) {
         const collection = db.collection("mangas");
         const data = {titleName: body.titleName, titleAltName: body.titleAltName, description: body.description, genres: body.genres};
         const result = await collection.insertOne(data);
-        console.log(result);
-        console.log(data);
         return Promise.resolve('success');
     }catch(err) {
         throw(err)
@@ -24,7 +24,7 @@ exports.add = async function(body) {
         await mongoClient.connect();
         const db = mongoClient.db("MangaBook");
         const collection = db.collection("mangas");
-        result = await collection.find({}).sort({_id:-1}).skip(skip).limit(count).toArray()
+        const result = await collection.find({}).sort({_id:-1}).skip(skip).limit(count).toArray()
         console.log(result);
         return Promise.resolve(result);
     } catch(err) {throw (err)}
@@ -35,9 +35,20 @@ exports.searchByName = async function (searchObj, limit) {
         await mongoClient.connect();
         const db = mongoClient.db("MangaBook");
         const collection = db.collection("mangas");
-        result1 = await collection.find({titleName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
-        result2 = await collection.find({titleAltName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
+        const result1 = await collection.find({titleName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
+        const result2 = await collection.find({titleAltName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
         console.log(result1, result2);
         return Promise.resolve({result1, result2});
+    } catch(err) {throw (err)}
+}
+
+exports.getById = async function (id) {
+    try {
+        await mongoClient.connect();
+        const db = mongoClient.db("MangaBook");
+        const collection = db.collection("mangas");
+        const result = await collection.findOne({"_id": new ObjectId(id)})
+        console.log(result);
+        return Promise.resolve(result);
     } catch(err) {throw (err)}
 }
