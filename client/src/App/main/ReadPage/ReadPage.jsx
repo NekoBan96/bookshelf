@@ -6,13 +6,14 @@ import React from "react";
 // import Form from "react-bootstrap/esm/Form"
 
 import ReadView from "../../../Components/ReadView/ReadView";
+import { useParams } from "react-router-dom";
 
 export default function ReadPage(){
-
+    const name = useParams.name
 
     return(
         <>
-                    <ReadView/>          
+                    <ReadView name={name}/>          
         </>
     )
 

@@ -16,7 +16,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
 
 
-import page from "./page.jpg"
 class ReadViewClass extends React.Component{
     constructor(props){
         super(props)
@@ -26,7 +25,7 @@ class ReadViewClass extends React.Component{
                 zIndex: "1"
             },
             sliderIndex: this.props.params.page-1,
-            pages: ["/api/static/sdsd/1.jpg", "/api/static/sdsd/2.jpg"]
+            pages: ["/api/static/джо джо/1/1.jpg", "/api/static/1/2.jpg"]
         }
         this.handleRangeChange = this.handleRangeChange.bind(this)
         this.handleSelect = this.handleSelect.bind(this)
