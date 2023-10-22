@@ -20,7 +20,7 @@ import {
 
 function SiteNav (props) {
     return (
-        <Navbar expand="lg" bg="bg-primary" data-bs-theme="dark">
+        <Navbar expand="lg" bg="bg-primary" fixed="top" data-bs-theme="dark">
           <Container>
             <Navbar.Brand as={Link} to="/" className="fs-4">MangaBook</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

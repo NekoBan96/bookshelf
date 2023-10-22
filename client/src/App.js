@@ -41,7 +41,7 @@ class App extends React.Component{
       <div className="App">
         <BrowserRouter>
           <SiteNav/>
-          <Main onError={this.handleShowAlert}/>
+          <Main onError={this.handleShowAlert} className="py-5"/>
           <AlertMessage alert={this.state.alert}/>
         </BrowserRouter>
       </div>
