@@ -49,6 +49,8 @@ app.post('/uploadContent', function(req, res) {
           continue
         let i = 0;
         const namesPages  = fs.readdirSync(path.join(pathRep, rep))
+        namesPages.sort((a, b) => parseInt(a.replace(/[^0-9]/, '')) - parseInt(b.replace(/[^0-9]/, '')))
+        console.log(namesPages);  
         for (const page of namesPages){
           i++
           ((j)=>{
