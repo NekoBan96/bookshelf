@@ -14,8 +14,8 @@ app.use(fileUpload({defCharset: 'utf8', defParamCharset: 'utf8'}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) 
 app.use('/static', express.static('./library'));
-
-  
+const fsp = require('node:fs/promises');
+const compressing = require('compressing');
 //Возможно понадобиться для загрузки больших файлов
 // app.use(fileUpload({
 //     useTempFiles: true,
@@ -36,38 +36,33 @@ app.post('/uploadContent', function(req, res) {
 
   log('try to add ' + titleName, sampleFile);
 
-  fs.mkdir(pathRep, () => {
-    sampleFile.mv(pathFile, function(err) { //перемещение файла из буфера в директорию
-      if (err)
-        return res.status(500).send(err);
-
-      try{
-        zl.extract(pathFile, pathRep, 'utf8') //распаковка архивированного файла
-          .then(()=> {
-            fs.rm(pathFile, () => { 
-              log('unzip done')
-                db.add(req.body).then(result => {res.status(200).send('zaebok')}).catch(err => {throw new Error(err)})
-            })
-            }, err=> {
-              throw new Error('ghugh')
-            }
-          )
-      }catch(err) {
-        log(err)
-      }
+  fsp.mkdir(pathRep)
+    .then(()=> compressing.zip.uncompress(sampleFile.data, pathRep, {zipFileNameEncoding: 'CP-866'}))
+    .then(()=>{
+      db.add(req.body).then(result => {res.status(200).send('zaebok')}).catch(err => {throw new Error(err)})
+      log('unzip done')
+      return fsp.readdir(pathRep)
     })
-  })
-});
+    .then((namesRep)=>{
+      log(namesRep)
+      for(const rep of namesRep){
+        if (rep == 'logo.jpg')
+          continue
+        let i = 0;
+        const namesPages  = fs.readdirSync(path.join(pathRep, rep))
+        for (const page of namesPages){
+          i++
+          ((j)=>{
+            fsp.rename(path.join(pathRep, rep, page), path.join(pathRep, rep, `${j}.png`), err => {if (err) throw err})
+          })(i)
+          
+        }
+      }
+    }).catch(err => log(err))
+   })
 
-// app.get('/manga/read/:titleName/:chapterId/:pageId', function(req, res) {
-//   titleName = req.params["titleName"];
-//   chapterId = req.params['chapterId'];
-//   pageId = req.params["pageId"];
-//   pathRep = path.join(__dirname, 'library', titleName, chapterId);
-//   pathFile = path.extname(path.join(pathRep, pageId)) 
-//   res.sendFile(pathFile);
 
-// })
+
 
 app.get('/db/recentAdded/', function (req, res) {
   start = Number(req.query.s);
@@ -80,6 +75,10 @@ app.get('/db/search/:search/:limit/', function (req, res) {
   limit = Number(req.params["limit"] || 0);
   search = req.params["search"];
   db.searchByName(search, limit).then (result => {res.send({result1, result2})}, err => {throw new Error(err)})
+})
+app.get('/db/getById/:id', function (req, res) {
+  id = req.params["id"];
+  db.getById(id).then (result => {res.send(result)}, err => {throw new Error(err)})
 })
 
 app.get('/db/searchGenre', function (req, res) {

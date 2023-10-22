@@ -12,10 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "compressing": "^1.10.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
-    "mongoose": "^7.5.4",
     "multiparty": "^4.2.3",
     "nodemon": "^3.0.1",
     "zip-lib": "^0.7.3"
