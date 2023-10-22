@@ -11,18 +11,18 @@ import {useParams} from "react-router-dom";
 import { useState } from "react";
 
 
-export default function TitlePage() {
+export default function TitlePage(props) {
     const [data, setData] = useState(null);
     const id = useParams().id
  
     useEffect(() => {
         console.log(`Запрос на /api/db/getById/${id}/`)
-        axios.get(`/api/db/getById/${id}/`,)
+        axios.get(`/api/db/getById/${id}/`)
             .then(res => {
-                console.log(res.data);
+                props.onData(res.data)
                 setData(res.data)
             }, err => console.log(err))
-      }, [id]);
+      }, [id, props]);
 
 
     function createCard() {
