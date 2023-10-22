@@ -49,6 +49,7 @@ export default class UploadPage extends React.Component {
     }
     handleChange(e) {
         let newSelected = this.state.selectedGenres
+        console.log(this.state.selectedGenres);
         if (e.target.checked){
             newSelected.push(e.target.value);
             this.setState({selectedGenres: newSelected})

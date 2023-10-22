@@ -25,7 +25,7 @@ export default function TitleCard(props) {
       };
 
 
-    let url = props.empty ? "#" : `/manga/${props.title}`
+    let url = props.empty ? "#" : `/manga/${props.title}/${props.id}`
     let title = props.empty ? <Placeholder xs={3} />  : props.title
     let altTitle = props.empty ? <Card.Title><Placeholder xs={1} /></Card.Title>  : <Card.Title>{props.altTitle}</Card.Title>
     let description = props.empty ?
@@ -64,12 +64,12 @@ export default function TitleCard(props) {
                         <Col className="align-items-center" xs="12" sm="6" md="5" lg="3" >
                             {CardImg}
                         </Col>
-                        <Col>
+                        <Col sm="6" md="7" lg="9">
                             <Card.Body>
                                 {CardTitle}
                                 {altTitle}
-                                {/* <Card.Title>{props.genres || <Placeholder xs={2} />}</Card.Title>
-                                <Card.Title>{props.releaseDate || <Placeholder xs={3} />}</Card.Title>
+                                <Card.Text>{props.genres.map(e => e + " ") || <Placeholder xs={2} />}</Card.Text>
+                                {/* <Card.Title>{props.releaseDate || <Placeholder xs={3} />}</Card.Title>
                                 <Card.Title>{props.status || <Placeholder xs={2} />}</Card.Title>
                                 <Card.Title>{props.author || <Placeholder xs={1} />}</Card.Title> */}
                             </Card.Body>

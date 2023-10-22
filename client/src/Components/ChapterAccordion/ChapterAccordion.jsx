@@ -4,30 +4,15 @@ import Accordion from 'react-bootstrap/Accordion';
 import { Link } from "react-router-dom";
 
 export default class ChapterAccordion extends React.Component{
-    constructor(props){
-        super(props)
-
-        this.state = {
-            chapters: [
-                {
-                    name: "Глава 1"
-                },
-                {
-                    name: "Глава 2"
-                }
-                
-            ]        
-        }
-    }
 
     createItems() {
         let i = 0
         return <Accordion.Item>
             <Accordion.Header>Главы</Accordion.Header>
             <Accordion.Body>
-                {this.state.chapters.map(chapter => {
+                {this.props.chapters.map(chapter => {
                         i++
-                        return <p key={i}><Link to={`${i}/1`} className="text-light">{chapter.name}</Link></p>
+                        return <p key={i}><Link to={`${i}/1`} className="text-light">{chapter.name}</Link> / Страниц: {chapter.pages}</p>
                     })}
             </Accordion.Body>
         </Accordion.Item>

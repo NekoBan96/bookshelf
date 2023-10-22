@@ -25,7 +25,6 @@ const compressing = require('compressing');
 
 app.post('/uploadContent', function(req, res) {
   log("Запрос на выкладывание файлов");
-
   if (!req.files || Object.keys(req.files).length === 0) //проверкаа наличия файлов
     return res.status(400).send('No files were uploaded.');
 

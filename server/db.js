@@ -11,7 +11,7 @@ exports.add = async function(body) {
         await mongoClient.connect();
         const db = mongoClient.db("MangaBook");
         const collection = db.collection("mangas");
-        const data = {titleName: body.titleName, titleAltName: body.titleAltName, description: body.description, genres: body.genres};
+        const data = {titleName: body.titleName, titleAltName: body.titleAltName, description: body.description, genres: body.genres.split(',')};
         const result = await collection.insertOne(data);
         return Promise.resolve('success');
     }catch(err) {

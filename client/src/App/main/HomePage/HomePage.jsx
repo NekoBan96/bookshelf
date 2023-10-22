@@ -26,6 +26,7 @@ export default class HomePage extends React.Component {
             this.state.recently.map(title => {
                 return <TitleCard
                 key={title._id}
+                id={title._id}
                 title={title.titleName}
                 altTitle={title.titleAltName}
                 src={`/api/static/${title.titleName}/logo.jpg`}

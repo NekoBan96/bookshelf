@@ -13,21 +13,36 @@ import { useState } from "react";
 
 export default function TitlePage() {
     const [data, setData] = useState(null);
-    const name = useParams().name
+    const id = useParams().id
  
     useEffect(() => {
-        console.log(`Запрос на /api/db/search/${name}/1`)
-        axios.get(`/api/db/search/${name}/1`,)
+        console.log(`Запрос на /api/db/getById/${id}/`)
+        axios.get(`/api/db/getById/${id}/`,)
             .then(res => {
-                setData(res.data.result1[0])
+                console.log(res.data);
+                setData(res.data)
             }, err => console.log(err))
-      }, [name]);
+      }, [id]);
 
 
     function createCard() {
         if (!data)
             return (<TitleCard empty={true} />)
-        return (<TitleCard type="full" title={data.titleName} altTitle={data.titleAltName} description={data.description} src={`/api/static/${data.titleName}/logo.jpg`}/>)
+        return (<TitleCard
+            type="full"
+            title={data.titleName}
+            altTitle={data.titleAltName}
+            description={data.description}
+            genres={data.genres}
+            id={data._id}
+            src={`/api/static/${data.titleName}/logo.jpg`}/>)
+    }
+    function createAccordion() {
+        if (!data)
+            return (<ChapterAccordion chapters={[]}/> )
+        return(
+                <ChapterAccordion chapters={data.chapters}/> 
+            )
     }
 
 
@@ -35,7 +50,7 @@ export default function TitlePage() {
         <Container className="my-4" >
             {createCard()}
             <div className="my-4">
-                <ChapterAccordion/> 
+                {createAccordion()}
             </div>
                             
         </Container>
