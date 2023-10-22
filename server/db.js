@@ -37,7 +37,6 @@ exports.searchByName = async function (searchObj, limit) {
         const collection = db.collection("mangas");
         const result1 = await collection.find({titleName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
         const result2 = await collection.find({titleAltName: new RegExp(`.*${searchObj}.*`, "gmui")}).limit(limit).toArray()
-        console.log(result1, result2);
         return Promise.resolve({result1, result2});
     } catch(err) {throw (err)}
 }

@@ -78,7 +78,21 @@ app.get('/db/search/:search/:limit/', function (req, res) {
 })
 app.get('/db/getById/:id', function (req, res) {
   id = req.params["id"];
-  db.getById(id).then (result => {res.send(result)}, err => {throw new Error(err)})
+  db.getById(id).then (result => {
+    pathRep = path.join(__dirname, "library", result.titleName)
+    const chapters = fs.readdirSync(pathRep)
+    let chaptersArray = []
+    for(const chapter of chapters){
+      if (chapter == 'logo.jpg')
+        continue
+      const pages = fs.readdirSync(path.join(pathRep, chapter))
+      chaptersArray.push({name: chapter, pages: pages.length})
+
+    }
+    result.chapters = chaptersArray
+    res.send(result)
+  }, err => {throw new Error(err)})
+
 })
 
 app.get('/db/searchGenre', function (req, res) {
