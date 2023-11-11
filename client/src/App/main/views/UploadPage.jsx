@@ -78,7 +78,7 @@ export default class UploadPage extends React.Component {
     }
     render() {
         return(
-            <Container className="my-5">
+            <Container>
             <Form data-bs-theme="dark" method="post" onSubmit={this.handleSubmit}>
                 <Row>
                     <Form.Group as={Col} lg="4" className="mb-3">

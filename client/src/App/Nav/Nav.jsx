@@ -1,7 +1,5 @@
 import React from "react"
 
-import './Styles.css'
-
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -42,7 +40,7 @@ function SiteNav (props) {
               </Nav>
               
               <Nav className="fs-5 w-100 align-items-center justify-content-end">
-              <NavLink as={Link} to="/"><FontAwesomeIcon icon={faRightToBracket} /></NavLink>
+              <NavLink as={Link} to="/user/login"><FontAwesomeIcon icon={faRightToBracket} /></NavLink>
                 <InputGroup className="w-auto">
                   <Button><FontAwesomeIcon icon={faMagnifyingGlass} /></Button>
                       <Form.Control 

@@ -47,7 +47,7 @@ export default function TitlePage(props) {
 
 
     return(
-        <Container className="my-4" >
+        <Container >
             {createCard()}
             <div className="my-4">
                 {createAccordion()}

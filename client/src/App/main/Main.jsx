@@ -1,9 +1,11 @@
 import React from "react";
 
-import HomePage from "./HomePage/HomePage";
-import UploadPage from "./UploadPage/UploadPage";
-import TitlePage from "./TitlePage/TitlePage"
+import HomePage from "./views/HomePage";
+import UploadPage from "./views/UploadPage";
+import TitlePage from "./views/TitlePage"
 import ReadPage from "./ReadPage/ReadPage";
+import RegisterPage from "./views/RegisterPage";
+import LoginPage from "./views/LoginPage";
 
 import {
     Route,
@@ -39,6 +41,10 @@ export default function Main(props) {
                 <Route exact path=":name/:id/:chapter/:page" element={<ReadPage onError={props.onError} data={data} onData={setTitleData}/>} />
             </Route>
             <Route path="*" element={<>404</>} />
+            <Route exact path="user">
+                <Route exact path="register" element={<RegisterPage onError={props.onError}/>}/>
+                <Route exact path="login" element={<LoginPage onError={props.onError}/>}/>
+            </Route>
         </Routes>
     </div>
     )
