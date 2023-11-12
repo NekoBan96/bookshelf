@@ -3,7 +3,7 @@ import React from "react";
 import HomePage from "./views/HomePage";
 import UploadPage from "./views/UploadPage";
 import TitlePage from "./views/TitlePage"
-import ReadPage from "./ReadPage/ReadPage";
+import ReadPage from "./views/ReadPage";
 import RegisterPage from "./views/RegisterPage";
 import LoginPage from "./views/LoginPage";
 
