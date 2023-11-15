@@ -8,6 +8,7 @@ fileUpload = require('express-fileupload'),
 zl = require("zip-lib"),
 cors = require('cors')
 const db = require('./db.js');
+const {naturalSort} = require('./controllers/naturalSort.js');
 //const mangas = require('./controllers/mangas.js');
 app.use(cors())
 app.use(fileUpload({defCharset: 'utf8', defParamCharset: 'utf8'}));
@@ -48,8 +49,8 @@ app.post('/uploadContent', function(req, res) {
         if (rep == 'logo.jpg')
           continue
         let i = 0;
-        const namesPages  = fs.readdirSync(path.join(pathRep, rep))
-        namesPages.sort((a, b) => parseInt(a.replace(/[^0-9]/, '')) - parseInt(b.replace(/[^0-9]/, '')))
+        let namesPages  = fs.readdirSync(path.join(pathRep, rep))
+        namesPages = naturalSort(namesPages)
         console.log(namesPages);  
         for (const page of namesPages){
           i++
@@ -81,7 +82,7 @@ app.get('/db/getById/:id', function (req, res) {
   id = req.params["id"];
   db.getById(id).then (result => {
     pathRep = path.join(__dirname, "library", result.titleName)
-    const chapters = fs.readdirSync(pathRep)
+    const chapters = naturalSort(fs.readdirSync(pathRep))
     let chaptersArray = []
     for(const chapter of chapters){
       if (chapter == 'logo.jpg')

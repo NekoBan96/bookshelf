@@ -42,7 +42,7 @@ function SiteNav (props) {
               <Nav className="fs-5 w-100 align-items-center justify-content-end">
               <NavLink as={Link} to="/user/login"><FontAwesomeIcon icon={faRightToBracket} /></NavLink>
                 <InputGroup className="w-auto">
-                  <Button><FontAwesomeIcon icon={faMagnifyingGlass} /></Button>
+                  <Button bg="danger"><FontAwesomeIcon icon={faMagnifyingGlass} /></Button>
                       <Form.Control 
                         type="search"
                         placeholder="Поиск"

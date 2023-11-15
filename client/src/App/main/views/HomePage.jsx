@@ -52,7 +52,7 @@ export default class HomePage extends React.Component {
        
 
         return (
-            <Container className="text-secondary">
+            <Container className="text-primary">
                 {/* <Row>
                     <Col>
                         <TitlesSlider />

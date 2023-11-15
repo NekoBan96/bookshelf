@@ -42,7 +42,7 @@ export default function TitleCard(props) {
     let CardImg = <Card.Link as={Link} to={url} className="d-flex justify-content-center p-2">
                             <Card.Img variant="top" src={src} onError={onError} className="rounded" />
                     </Card.Link>
-    let CardTitle = <Card.Link as={Link} to={url} style={{textDecoration: "", color: "#008cf0"}}>
+    let CardTitle = <Card.Link as={Link} to={url}>
                         <Card.Title className="fs-1"> {title}</Card.Title>
                     </Card.Link>
 
